@@ -176,6 +176,16 @@ func (sf *ASDU) SendReplyMirror(c Connect, cause Cause) error {
 	return c.Send(r)
 }
 
+func (sf *ASDU) SendReply(c Connect, cause Cause, addr CommonAddr) error {
+	sf.CommonAddr = addr
+	r := NewASDU(sf.Params, sf.Identifier)
+	r.Coa.Cause = cause
+	b := make([]byte, 3)
+	r.infoObj = append(r.infoObj, b...)
+	r.infoObj = append(r.infoObj, sf.infoObj...)
+	return c.Send(r)
+}
+
 //// String returns a full description.
 //func (u *ASDU) String() string {
 //	dataSize, err := GetInfoObjSize(u.Type)

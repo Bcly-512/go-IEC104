@@ -30,7 +30,7 @@ type mysrv struct{}
 
 func (sf *mysrv) InterrogationHandler(c asdu.Connect, asduPack *asdu.ASDU, qoi asdu.QualifierOfInterrogation) error {
 	log.Println("qoi", qoi)
-	asduPack.SendReplyMirror(c, asdu.ActivationCon)
+	asduPack.SendReply(c, asdu.ActivationCon, asdu.GlobalCommonAddr)
 	err := asdu.Single(c, false, asdu.CauseOfTransmission{Cause: asdu.InterrogatedByStation}, asdu.GlobalCommonAddr,
 		asdu.SinglePointInfo{})
 	if err != nil {
@@ -51,7 +51,7 @@ func (sf *mysrv) InterrogationHandler(c asdu.Connect, asduPack *asdu.ASDU, qoi a
 	// 		time.Sleep(time.Second * 1)
 	// 	}
 	// }()
-	asduPack.SendReplyMirror(c, asdu.ActivationTerm)
+	asduPack.SendReply(c, asdu.ActivationTerm, asdu.GlobalCommonAddr)
 	return nil
 }
 func (sf *mysrv) CounterInterrogationHandler(asdu.Connect, *asdu.ASDU, asdu.QualifierCountCall) error {
