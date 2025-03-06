@@ -1,3 +1,3 @@
-module github.com/thinkgos/go-iecp5
+module github.com/Bcly-512/go-iec104
 
-go 1.15
+go 1.23.4

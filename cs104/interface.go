@@ -7,7 +7,7 @@ package cs104
 import (
 	"time"
 
-	"github.com/thinkgos/go-iecp5/asdu"
+	"github.com/Bcly-512/go-iec104/asdu"
 )
 
 // ServerHandlerInterface is the interface of server handler
